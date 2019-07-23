@@ -35,6 +35,7 @@ const client = new ApolloClient({
 })
 
 const App = () => {
+  console.log('authLink', authLink)
   return (
     <ApolloProvider client={client}>
       <ApolloHooksProvider client={client}>

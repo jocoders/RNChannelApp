@@ -11,8 +11,6 @@ const ChatFavoritesScreen = ({ navigation }) => {
   const sign_out = useMutation(SIGN_OUT)
 
   const updateTokens = (refreshToken, refreshTokenId) => {
-    console.log('refreshToken', refreshToken)
-    console.log('refreshTokenId', refreshTokenId)
     update_tokens({
       variables: { refreshToken, refreshTokenId },
       update: async (cache, { data }) => {
@@ -40,15 +38,11 @@ const ChatFavoritesScreen = ({ navigation }) => {
   const getCredentials = async () => {
     try {
       const tokens = await Keychain.getGenericPassword()
-      console.log('tokens', tokens)
       const keychainAccessToken = tokens.username
       const keychainRefreshToken = tokens.password
       const currentTime = Date.now() / 1000
       const decodeAccessToken = jwtDecode(keychainAccessToken)
-      console.log('decodeAccessToken', decodeAccessToken)
       const keychainRefreshTokenId = decodeAccessToken.refreshTokenId
-      console.log('keychainRefreshTokenId', keychainRefreshTokenId)
-
       if (decodeAccessToken.exp > currentTime) {
         console.log('Credentials is still valid')
       } else if (decodeAccessToken.exp < currentTime) {

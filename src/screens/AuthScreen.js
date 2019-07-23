@@ -15,21 +15,21 @@ const styles = StyleSheet.create({
 })
 
 const AuthScreen = ({ navigation }) => {
-  //const [loading, setLoading] = useState(false)
   const sign = useMutation(SIGN_IN)
   const handleSignIn = code => {
-    console.log('handleSignIn')
-    console.log('code', code)
-    sign({
-      variables: { code },
-      update: async (cache, { data }) => {
-        const accessToken = data.signIn.accessToken
-        const refreshToken = data.signIn.refreshToken
-        console.log('accessToken', accessToken)
-        console.log('refreshToken', refreshToken)
-        await Keychain.setGenericPassword(accessToken, refreshToken)
-      }
-    }).then(() => navigation.navigate('App'))
+    try {
+      sign({
+        variables: { code },
+        update: async (cache, { data }) => {
+          const accessToken = data.signIn.accessToken
+          const refreshToken = data.signIn.refreshToken
+          await Keychain.setGenericPassword(accessToken, refreshToken)
+        }
+      })
+      navigation.navigate('App')
+    } catch (error) {
+      throw new Error()
+    }
   }
 
   const getToken = async () => {
