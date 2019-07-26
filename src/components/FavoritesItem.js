@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: '#f0f0f0',
     flexDirection: 'row',
     height: 90,
     justifyContent: 'center',
     padding: 10,
-    width: '100%'
+    width: '92%'
   },
   commentsCountStyle: {
     alignItems: 'center',
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     flex: 4,
     justifyContent: 'space-between',
     height: '100%',
-    paddingLeft: 5
+    marginLeft: 10
   },
   headerSubContainer: {
     flexDirection: 'row'
@@ -54,17 +55,17 @@ const styles = StyleSheet.create({
   },
   messageContainer: {},
   messageStyle: {
-    fontSize: 12
+    fontSize: 10
   },
   shadowStyle: {
-    elevation: 4,
+    elevation: 8,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 4
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65
   },
   timeStyle: {
     fontSize: 10

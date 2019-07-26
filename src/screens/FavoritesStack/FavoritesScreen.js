@@ -19,7 +19,7 @@ const FavoritesScreen = ({ navigation }) => {
   const renderSeparator = () => (
     <View
       style={{
-        height: 1,
+        height: 4,
         margin: 4,
         width: '100%',
         backgroundColor: '#ffffff'

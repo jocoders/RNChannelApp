@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   shadowStyle: {
-    shadowColor: '#000',
+    shadowColor: '#1C1C1E',
     shadowOffset: {
       width: 0,
       height: 4
@@ -104,14 +104,14 @@ const ProfileScreen = ({ navigation }) => {
     console.log('Cover pressed')
   }
   return (
-    <View style={[container, shadowStyle]}>
+    <View style={[container]}>
       <TouchableOpacity onPress={onCoverPress}>
         <ImageBackground
           source={require('../img/marion-michele-330691-unsplash-min.jpg')}
           style={imageBackgroundStyle}
         />
       </TouchableOpacity>
-      <View style={profileCard}>
+      <View style={[profileCard, shadowStyle]}>
         <TouchableOpacity onPress={onAvatarPress}>
           <Image source={require('../img/55.jpg')} style={itemAvatarImage} />
         </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { ActionSheetIOS, FlatList, StyleSheet, View } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import { ModalCard, SearchBar, ScreenHeader, TopicItem } from '../../components'
 import { fdata } from '../../dataDraft'
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 const TopicsScreen = ({ navigation }) => {
   const { container, imageTopicStyle } = styles
   const [isModalVisible, setModalVisible] = useState(false)
+  const [topicStars, setTopicStars] = useState(0)
   const [topicTitle, setTopicTitle] = useState('')
   const [userInput, setInput] = useState({
     value: '',
@@ -87,7 +88,7 @@ const TopicsScreen = ({ navigation }) => {
   const renderSeparator = () => (
     <View
       style={{
-        height: 1,
+        height: 4,
         margin: 4,
         width: '100%',
         backgroundColor: '#ffffff'
@@ -96,6 +97,25 @@ const TopicsScreen = ({ navigation }) => {
   )
   const rightIconPressHandler = () => {
     setModalVisible(true)
+  }
+  const topicsStarsHandler = () => {
+    setTopicStars(topicStars + 1)
+  }
+  const showActionSheet = () => {
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ['Cancel', 'Confirm'],
+        title: 'Add to favorites',
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      },
+
+      buttonIndex => {
+        if (buttonIndex === 1) {
+          console.log('Add to favorites')
+        }
+      }
+    )
   }
   return (
     <View style={container}>
@@ -131,12 +151,13 @@ const TopicsScreen = ({ navigation }) => {
           keyExtractor={item => item.header}
           renderItem={({ item }) => (
             <TopicItem
-              itemAvatarImage={item.itemAvatarImage}
               header={item.header}
-              topic={item.topic}
-              time={item.time}
-              numberStars={item.commentsCount}
+              itemAvatarImage={item.itemAvatarImage}
+              numberStars={topicStars}
+              onIconAddPress={showActionSheet}
+              onIconStarPress={topicsStarsHandler}
               onPress={() => navigation.navigate(CHAT_SCREEN)}
+              topic={item.topic}
             />
           )}
           ItemSeparatorComponent={renderSeparator}

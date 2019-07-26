@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Alert,
   Image,
+  ImageBackground,
   KeyboardAvoidingView,
   Modal,
   ScrollView,
@@ -35,9 +36,8 @@ const styles = StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
     alignSelf: 'center',
-    borderColor: BLUE,
+    backgroundColor: '#ffffff',
     borderRadius: 10,
-    borderWidth: 1,
     height: 140,
     justifyContent: 'center',
     marginTop: 20,
@@ -59,8 +59,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignSelf: 'center',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: BLUE,
+    backgroundColor: '#ffffff',
     flexDirection: 'row',
     marginTop: 5,
     width: 260
@@ -119,44 +118,54 @@ const ModalCard = props => {
         visible={visible}
       >
         <ModalHeader header={header} onLeftIconPress={hideModal} onRightIconPress={create} />
-        <ScrollView>
-          <View style={[imageContainer, imageTopicStyle]}>
-            <TouchableOpacity onPress={chooseImage}>
-              <Ionicons name="ios-add" color={BLUE} size={60} style={{ display: buttonAddPushed ? 'none' : 'flex' }} />
-            </TouchableOpacity>
-            <Image
-              source={{ uri: image }}
-              style={[
-                {
-                  borderRadius: 10,
-                  display: buttonAddPushed ? 'flex' : 'none',
-                  height: 140,
-                  width: 260
-                },
-                imageTopicStyle
-              ]}
-            />
-          </View>
-          <Text style={noticeStyle}>{titleNotice}</Text>
-          <View style={titleContainer}>
-            <View style={iconContainer}>
-              <Ionicons name="ios-add" color="#ffffff" size={20} />
+        <ImageBackground
+          source={require('../img/christian-perner-329584-unsplash-min.jpg')}
+          style={{ width: '100%', height: '100%' }}
+        >
+          <ScrollView>
+            <View style={[imageContainer, imageTopicStyle]}>
+              <TouchableOpacity onPress={chooseImage}>
+                <Ionicons
+                  name="ios-add"
+                  color={BLUE}
+                  size={60}
+                  style={{ display: buttonAddPushed ? 'none' : 'flex' }}
+                />
+              </TouchableOpacity>
+              <Image
+                source={{ uri: image }}
+                style={[
+                  {
+                    borderRadius: 10,
+                    display: buttonAddPushed ? 'flex' : 'none',
+                    height: 140,
+                    width: 260
+                  },
+                  imageTopicStyle
+                ]}
+              />
             </View>
-            <TextInput
-              autoCapitalize="words"
-              multiline={true}
-              onChangeText={onChange}
-              placeholder={titlePlaceholder}
-              style={textInput}
-              textAlignVertical={true}
-              value={titleValue}
-            />
-          </View>
-          {description}
-          <TouchableOpacity style={buttonContainer}>
-            <ButtonWithBackground buttonColor={BLUE} onPress={create} text="Create" />
-          </TouchableOpacity>
-        </ScrollView>
+            <Text style={noticeStyle}>{titleNotice}</Text>
+            <View style={titleContainer}>
+              <View style={iconContainer}>
+                <Ionicons name="ios-add" color="#ffffff" size={20} />
+              </View>
+              <TextInput
+                autoCapitalize="none"
+                multiline={true}
+                onChangeText={onChange}
+                placeholder={titlePlaceholder}
+                style={textInput}
+                textAlignVertical={true}
+                value={titleValue}
+              />
+            </View>
+            {description}
+            <TouchableOpacity style={buttonContainer}>
+              <ButtonWithBackground buttonColor={BLUE} onPress={create} text="Create" />
+            </TouchableOpacity>
+          </ScrollView>
+        </ImageBackground>
       </Modal>
     </KeyboardAvoidingView>
   )
