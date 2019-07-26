@@ -1,25 +1,25 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { BLUE } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
+    alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 20,
-    height: 40,
     flexDirection: 'row',
+    height: 40,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    marginTop: 20,
+    width: '95%'
+  },
+  iconStyle: {
+    color: BLUE,
+    fontSize: 15,
+    fontWeight: 'bold'
   },
   textStyle: {
     fontSize: 20,
     fontWeight: 'bold'
-  },
-  iconStyle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: BLUE
   }
 })
 

@@ -28,4 +28,4 @@ const AuthLoadingScreen = ({ navigation }) => {
   )
 }
 
-export default AuthLoadingScreen 
+export default AuthLoadingScreen

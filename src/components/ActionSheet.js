@@ -1,28 +1,29 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const styles = StyleSheet.create({
+  textStyle: {
+    color: '#0D3FDE',
+    fontSize: 20
+  },
   container: {
-    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
     height: 30,
     justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  textStyle: {
-    fontSize: 20,
-    color: '#0D3FDE'
+    width: '100%'
   }
 })
 
-const ActionSheet = (props) => {
+const ActionSheet = props => {
   const { container, textStyle } = styles
+  const { showActionSheet, sortedHeader } = props
   return (
     <View style={container}>
-      <TouchableOpacity onPress={props.showActionSheet}>
+      <TouchableOpacity onPress={showActionSheet}>
         <Text style={textStyle}>
-          {props.sortedHeader}
+          {sortedHeader}
           <Ionicons
             size={20}
             name="ios-arrow-down"
@@ -32,6 +33,5 @@ const ActionSheet = (props) => {
     </View>
   )
 }
-
 
 export default ActionSheet

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Button, Text } from 'react-native'
+import { Button, Text, View } from 'react-native'
 import { useMutation } from 'react-apollo-hooks'
 import * as Keychain from 'react-native-keychain'
 import jwtDecode from 'jwt-decode'
@@ -9,7 +9,6 @@ import { UPDATE_TOKENS, SIGN_OUT } from '../../graphql/mutations'
 const ChatFavoritesScreen = ({ navigation }) => {
   const update_tokens = useMutation(UPDATE_TOKENS)
   const sign_out = useMutation(SIGN_OUT)
-
   const updateTokens = (refreshToken, refreshTokenId) => {
     update_tokens({
       variables: { refreshToken, refreshTokenId },
@@ -63,6 +62,7 @@ const ChatFavoritesScreen = ({ navigation }) => {
   }
 
   const checkCredentials = async () => {
+    console.log('CheckCredentials')
     const tokens = await Keychain.getGenericPassword()
     const keyChainAccessToken = tokens.username
     const keyChainRefreshToken = tokens.password
@@ -80,9 +80,9 @@ const ChatFavoritesScreen = ({ navigation }) => {
       <ScreenHeader
         header="Chat"
         leftIconName="ios-arrow-back"
-        rightIconName="ios-add"
         onLeftIconPress={() => navigation.goBack()}
         onRightIconPress={() => console.log('Right icon pressed')}
+        rightIconName="ios-add"
       />
       <Text>Home Screen</Text>
       <Button title="updateTokens" onPress={getCredentials} />

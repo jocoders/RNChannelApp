@@ -1,22 +1,22 @@
 import React from 'react'
-import { View, Text, TouchableNativeFeedback, TouchableOpacity, Platform, StyleSheet } from 'react-native'
+import { Platform, Text, TouchableNativeFeedback, TouchableOpacity, StyleSheet, View } from 'react-native'
 
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    width: 260,
-    padding: 10,
+    borderRadius: 10,
     marginTop: 15,
-    borderRadius: 10
+    padding: 10,
+    width: 260
   },
   disabled: {
     borderColor: '#aaa'
   },
   disabledText: {
-    textAlign: 'center',
-    color: '#ffffff',
     fontSize: 15,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#ffffff',
+    textAlign: 'center'
   }
 })
 
@@ -32,7 +32,6 @@ const ButtonWithBackground = props => {
   if (Platform.OS === 'android') {
     return <TouchableNativeFeedback onPress={onPress}>{content}</TouchableNativeFeedback>
   }
-  console.log('IOS')
   return (
     <TouchableOpacity style={{ width: '90%' }} onPress={onPress}>
       {content}

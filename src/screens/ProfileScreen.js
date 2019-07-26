@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button, FlatList, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { Button, FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { InterestsItem } from '../components'
-import { data } from '../dataDraft'
+import { channelData } from '../dataDraft'
 
 const styles = StyleSheet.create({
   container: {
@@ -97,11 +97,24 @@ const ProfileScreen = ({ navigation }) => {
     textStyle,
     userNameStyle
   } = styles
+  const onAvatarPress = () => {
+    console.log('Avatar pressed')
+  }
+  const onCoverPress = () => {
+    console.log('Cover pressed')
+  }
   return (
     <View style={[container, shadowStyle]}>
-      <ImageBackground source={require('../img/marion-michele-330691-unsplash-min.jpg')} style={imageBackgroundStyle} />
+      <TouchableOpacity onPress={onCoverPress}>
+        <ImageBackground
+          source={require('../img/marion-michele-330691-unsplash-min.jpg')}
+          style={imageBackgroundStyle}
+        />
+      </TouchableOpacity>
       <View style={profileCard}>
-        <Image source={require('../img/55.jpg')} style={itemAvatarImage} />
+        <TouchableOpacity onPress={onAvatarPress}>
+          <Image source={require('../img/55.jpg')} style={itemAvatarImage} />
+        </TouchableOpacity>
         <Text style={userNameStyle}>jocoders</Text>
         <View style={iconsContainer}>
           <View style={iconSubcontainer}>
@@ -121,7 +134,7 @@ const ProfileScreen = ({ navigation }) => {
       <Text style={interestsHeader}>Interests</Text>
       <View style={interestsContainer}>
         <FlatList
-          data={data}
+          data={channelData}
           autoCorrect={false}
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="on-drag"

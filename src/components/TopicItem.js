@@ -5,27 +5,27 @@ import { BLUE } from '../constants'
 
 export const styles = StyleSheet.create({
   avatarImageStyle: {
-    width: 44,
-    height: 44,
+    backgroundColor: 'black',
     borderRadius: 44 / 2,
-    backgroundColor: 'black'
+    height: 44,
+    width: 44
   },
   buttonStyle: {
-    justifyContent: 'center',
     alignItems: 'center',
-    width: '70%',
-    height: 30,
+    backgroundColor: BLUE,
     borderRadius: 10,
-    backgroundColor: BLUE
+    height: 30,
+    justifyContent: 'center',
+    width: '70%'
   },
   container: {
-    flexDirection: 'column',
-    padding: 10,
-    height: 105,
-    width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0'
+    backgroundColor: '#f0f0f0',
+    flexDirection: 'column',
+    height: 105,
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%'
   },
   headerMain: {
     flex: 1,
@@ -33,21 +33,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   itemButton: {
-    flex: 3,
+    alignItems: 'flex-end',
     alignSelf: 'flex-end',
-    //justifyContent: 'center',
-    alignItems: 'flex-end'
+    flex: 3
   },
   itemImage: {
+    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   },
   itemHeader: {
     flex: 4,
-    marginLeft: 2,
     flexDirection: 'column',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginLeft: 2
   },
   itemTime: {
     flex: 1
@@ -57,52 +56,51 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   itemStars: {
-    flex: 2,
-    marginTop: 5,
     alignSelf: 'flex-start',
-    flexDirection: 'row'
+    flex: 2,
+    flexDirection: 'row',
+    marginTop: 5
   },
   subHeader: {
     flex: 2
   },
   shadowStyle: {
+    elevation: 4,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2
     },
     shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4
+    shadowRadius: 2.62
   },
   subContainerUp: {
-    width: '100%',
+    flexDirection: 'row',
     height: '60%',
-    flexDirection: 'row'
+    width: '100%'
   },
   subContainerDown: {
-    width: '100%',
+    flexDirection: 'row',
     height: '40%',
-    flexDirection: 'row'
+    width: '100%'
   },
   textStyle: {
-    fontSize: 25,
-    color: '#ffffff'
+    color: '#ffffff',
+    fontSize: 25
   },
   textHeaderStyle: {
-    fontWeight: 'bold',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    fontWeight: 'bold'
   },
   textStarStyle: {
     alignSelf: 'center',
-    marginLeft: 4,
-    fontSize: 15
+    fontSize: 15,
+    marginLeft: 4
   },
   timeStyle: {
-    //flex: 1,
     alignSelf: 'flex-end',
-    paddingTop: 4,
-    fontSize: 10
+    fontSize: 10,
+    paddingTop: 4
   },
   timeBlock: {
     flex: 2
@@ -138,7 +136,6 @@ const TopicItem = props => {
     timeBlock
   } = styles
   const { header, itemAvatarImage, onIconStarPress, onPress, numberStars, topic, time } = props
-  //  const item = (
   return (
     <View style={[container, shadowStyle]}>
       <View style={subContainerUp}>

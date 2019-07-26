@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import { ModalCard, SearchBar, ScreenHeader, TopicItem } from '../../components'
 import { fdata } from '../../dataDraft'
@@ -9,42 +9,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  textStyle: {
-    fontSize: 25,
-    fontWeight: 'bold'
-  },
-  subContainer: {}
+  imageTopicStyle: {
+    width: 150,
+    height: 150,
+    borderRadius: 75
+  }
 })
 
 const TopicsScreen = ({ navigation }) => {
-  const { container, subContainer, textStyle } = styles
+  const { container, imageTopicStyle } = styles
   const [isModalVisible, setModalVisible] = useState(false)
-  const [newTopicTitle, setNewTopicTitle] = useState('')
+  const [topicTitle, setTopicTitle] = useState('')
   const [userInput, setInput] = useState({
     value: '',
     isEmpty: true
   })
-  const [newTopicImage, setNewTopicImage] = useState({
+  const [topicImage, setTopicImage] = useState({
     image: null,
     loading: false
   })
-  const onChangeTexthandler = value => {
-    setInput({
-      value,
-      isEmpty: false
-    })
-  }
-  const onPressXButtonHandler = () => {
-    setInput({
-      value: '',
-      isEmpty: true
-    })
-  }
-  const hideModalHandler = () => {
-    setModalVisible(false)
-  }
   const setTopicImageHandler = source => {
-    setNewTopicImage({
+    setTopicImage({
       image: source,
       loading: true
     })
@@ -72,6 +57,33 @@ const TopicsScreen = ({ navigation }) => {
       }
     })
   }
+  const hideModalHandler = () => {
+    setModalVisible(false)
+  }
+  const newTitleHandler = value => {
+    setTopicTitle(value)
+  }
+  const onChangeTexthandler = value => {
+    setInput({
+      value,
+      isEmpty: false
+    })
+  }
+  const onPressXButtonHandler = () => {
+    setInput({
+      value: '',
+      isEmpty: true
+    })
+  }
+  const renderHeader = () => (
+    <SearchBar
+      isEmpty={userInput.isEmpty}
+      onChangeText={onChangeTexthandler}
+      onPressXButton={onPressXButtonHandler}
+      placeholder="Search topic..."
+      value={userInput.value}
+    />
+  )
   const renderSeparator = () => (
     <View
       style={{
@@ -82,46 +94,38 @@ const TopicsScreen = ({ navigation }) => {
       }}
     />
   )
-  const renderHeader = () => (
-    <SearchBar
-      value={userInput.value}
-      placeholder="Search topic..."
-      isEmpty={userInput.isEmpty}
-      onChangeText={onChangeTexthandler}
-      onPressXButton={onPressXButtonHandler}
-    />
-  )
   const rightIconPressHandler = () => {
     setModalVisible(true)
-  }
-  const newTitleHandler = value => {
-    setNewTopicTitle(value)
   }
   return (
     <View style={container}>
       <ScreenHeader
         header="Topics"
         leftIconName="ios-arrow-back"
-        rightIconName="ios-add"
         onLeftIconPress={() => navigation.goBack()}
         onRightIconPress={rightIconPressHandler}
+        rightIconName="ios-add"
       />
       <ModalCard
-        buttonAddPushed={newTopicImage.loading}
-        header="Topic"
-        image={newTopicImage.image}
+        buttonAddPushed={topicImage.loading}
         chooseImage={chooseTopicImageHandler}
         create={hideModalHandler}
+        descriptionNotice="You can provide an optional description for your topic."
+        header="Topic"
         hideModal={hideModalHandler}
+        image={topicImage.image}
+        imageTopicStyle={imageTopicStyle}
         noticeText="This is the notice"
         onChange={newTitleHandler}
-        titleValue={newTopicTitle}
+        titleNotice="Please provide clear title for your topic (max 20 characters)."
+        titlePlaceholder="Topic title..."
+        titleValue={topicTitle}
         visible={isModalVisible}
       />
       <View style={{ justifyContent: 'center' }}>
         <FlatList
-          data={fdata}
           autoCorrect={false}
+          data={fdata}
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="on-drag"
           keyExtractor={item => item.header}

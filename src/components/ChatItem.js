@@ -3,24 +3,24 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 
 const styles = StyleSheet.create({
   avatarImageStyle: {
-    width: 44,
+    borderRadius: 44 / 2,
     height: 44,
-    borderRadius: 44 / 2
+    width: 44
   },
   container: {
     flexDirection: 'row',
     maxWidth: '74%'
   },
   textStyle: {
+    borderRadius: 10,
     fontSize: 15,
-    padding: 5,
-    borderRadius: 10
+    padding: 5
   },
   textContainer: {
-    flexDirection: 'column',
     backgroundColor: 'pink',
-    marginLeft: 8,
-    borderRadius: 10
+    borderRadius: 10,
+    flexDirection: 'column',
+    marginLeft: 8
   },
   timeContainer: {
     alignSelf: 'flex-end',

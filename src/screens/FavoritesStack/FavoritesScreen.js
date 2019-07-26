@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import { ScreenHeader, FavoritesItem, Header } from '../../components'
 import { CHAT_FAVORITES_SCREEN } from '../routes'
 import { ffdata } from '../../dataDraft'
@@ -11,12 +11,11 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 25,
     fontWeight: 'bold'
-  },
-  subContainer: {}
+  }
 })
 
 const FavoritesScreen = ({ navigation }) => {
-  const { container, subContainer, textStyle } = styles
+  const { container } = styles
   const renderSeparator = () => (
     <View
       style={{
@@ -40,14 +39,14 @@ const FavoritesScreen = ({ navigation }) => {
       <ScreenHeader
         header="Favorites"
         leftIconName="ios-add"
-        rightIconName="ios-add"
         onLeftIconPress={leftIconPressHandler}
         onRightIconPress={rightIconPressHandler}
+        rightIconName="ios-add"
       />
       <View style={{ justifyContent: 'center' }}>
         <FlatList
-          data={ffdata}
           autoCorrect={false}
+          data={ffdata}
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="on-drag"
           keyExtractor={item => item.channelHeader}

@@ -4,43 +4,43 @@ import { BLUE } from '../constants'
 
 const styles = StyleSheet.create({
   amountStyle: {
+    color: '#ffffff',
     fontSize: 12,
-    fontWeight: 'bold',
-    color: '#ffffff'
+    fontWeight: 'bold'
   },
   avatarContainer: {
+    alignItems: 'center',
     flex: 1,
-    height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    height: '100%'
   },
   avatarImageStyle: {
-    width: 44,
+    borderRadius: 44 / 2,
     height: 44,
-    borderRadius: 44 / 2
+    width: 44
   },
   container: {
-    flexDirection: 'row',
-    padding: 10,
-    height: 90,
-    width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0'
+    backgroundColor: '#f0f0f0',
+    flexDirection: 'row',
+    height: 90,
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%'
   },
   commentsCountStyle: {
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 20,
-    width: 40,
     backgroundColor: BLUE,
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: 'center',
+    height: 20,
+    width: 40
   },
   headerContainer: {
     flex: 4,
-    paddingLeft: 5,
+    justifyContent: 'space-between',
     height: '100%',
-    justifyContent: 'space-between'
+    paddingLeft: 5
   },
   headerSubContainer: {
     flexDirection: 'row'
@@ -57,23 +57,23 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   shadowStyle: {
+    elevation: 4,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2
     },
     shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4
+    shadowRadius: 2.62
   },
   timeStyle: {
     fontSize: 10
   },
   timeContainer: {
+    alignItems: 'flex-end',
     flex: 1,
     height: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end'
+    justifyContent: 'space-between'
   },
   topicStyle: {
     fontSize: 12,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const FavoritesItem = (props, { navigation }) => {
+const FavoritesItem = props => {
   const { commentsCount, channelHeader, itemAvatarImage, messageText, onPress, time, topic, userMessageName } = props
   const {
     amountStyle,

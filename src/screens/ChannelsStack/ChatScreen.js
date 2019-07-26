@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
-import { View, Button, FlatList, Text, StyleSheet } from 'react-native'
-import { ChatItem, MessageInput, ChatHeader } from '../../components'
+import { FlatList, StyleSheet, View } from 'react-native'
+import { ChatHeader, ChatItem, MessageInput } from '../../components'
+import { CHANNEL_CARD_SCREEN } from '../routes'
 import { mdata } from '../../dataDraft'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  textStyle: {
-    fontSize: 25,
-    fontWeight: 'bold'
   }
 })
 
 const ChatScreen = ({ navigation }) => {
-  const { container, textStyle } = styles
+  const { container } = styles
   const [message, setMessage] = useState(null)
   const attachHandler = () => {
     console.log('Attach button pushed')
-  }
-  const onChangeText = value => {
-    setMessage(value)
   }
   const renderSeparator = () => (
     <View
@@ -32,6 +26,9 @@ const ChatScreen = ({ navigation }) => {
       }}
     />
   )
+  const onChangeText = value => {
+    setMessage(value)
+  }
   const sentHandler = () => {
     setMessage(null)
   }
@@ -43,12 +40,12 @@ const ChatScreen = ({ navigation }) => {
         header="Which the best way to make a shadow in React Native?"
         leftIconName="ios-arrow-back"
         onLeftIconPress={() => navigation.goBack()}
-        onChannelImagePress={() => console.log('Right icon pressed')}
+        onChannelImagePress={() => navigation.navigate(CHANNEL_CARD_SCREEN)}
       />
       <FlatList
+        autoCorrect={false}
         data={mdata}
         inverted={true}
-        autoCorrect={false}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="on-drag"
         keyExtractor={item => item.id}

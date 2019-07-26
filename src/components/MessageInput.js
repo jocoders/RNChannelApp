@@ -1,38 +1,38 @@
 import React from 'react'
-import { View, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { BLUE } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    position: 'absolute',
-    left: 0,
-    right: 0,
+    backgroundColor: BLUE,
     bottom: 0,
-    backgroundColor: BLUE
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0
+  },
+  iconStyle: {
+    alignSelf: 'center',
+    bottom: 0,
+    color: '#ffffff',
+    position: 'absolute'
+  },
+  secondSubContainer: {
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    width: '80%'
   },
   subContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 10
   },
-  secondSubContainer: {
-    alignItems: 'center',
-    width: '80%',
-    borderRadius: 10,
-    backgroundColor: '#f0f0f0'
-  },
   textInput: {
     fontSize: 18,
-    paddingBottom: 4,
-    maxHeight: 200
-  },
-  iconStyle: {
-    position: 'absolute',
-    alignSelf: 'center',
-    color: '#ffffff',
-    bottom: 0
+    maxHeight: 200,
+    paddingBottom: 4
   }
 })
 const MessageInput = props => {
@@ -47,13 +47,13 @@ const MessageInput = props => {
         <View style={secondSubContainer}>
           <View style={{ width: '85%' }}>
             <TextInput
-              style={textInput}
-              value={value}
-              textAlignVertical={true}
-              multiline={true}
               autoCapitalize="words"
+              multiline={true}
               onChangeText={onChangeText}
               placeholder="Message"
+              style={textInput}
+              textAlignVertical={true}
+              value={value}
             />
           </View>
         </View>

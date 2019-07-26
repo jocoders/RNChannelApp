@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Image,
   ImageBackground,
   Platform,
   Text,
@@ -11,27 +10,27 @@ import {
 } from 'react-native'
 
 const styles = StyleSheet.create({
+  headerStyle: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
   imageBackgroundStyle: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     borderRadius: 5,
-    overflow: 'hidden'
-  },
-  headerStyle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: 'white'
+    justifyContent: 'flex-end',
+    height: '100%',
+    overflow: 'hidden',
+    width: '100%'
   },
   listItem: {
     height: 140,
-    width: 120,
-    margin: 6
+    margin: 6,
+    width: 120
   }
 })
 
-const InterestsItem = (props, { navigation }) => {
+const InterestsItem = props => {
   const { listItem, headerStyle, imageBackgroundStyle } = styles
   const { imageSource, channelItemHeader, onPress } = props
   const item = (

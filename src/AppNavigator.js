@@ -1,10 +1,10 @@
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {
-  createStackNavigator,
   createAppContainer,
-  createSwitchNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createStackNavigator,
+  createSwitchNavigator
 } from 'react-navigation'
 import { AuthScreen, ProfileScreen } from './screens'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
@@ -12,7 +12,13 @@ import ChannelsStack from './screens/ChannelsStack'
 import FavoritesStack from './screens/FavoritesStack'
 import { BLUE, PROJECT_FONT } from './constants'
 
-const AuthStack = createStackNavigator({ AUTH_SCREEN: AuthScreen })
+const AuthStack = createStackNavigator(
+  { AUTH_SCREEN: AuthScreen },
+  {
+    // header: null,
+    headerMode: 'none'
+  }
+)
 const AppStack = createBottomTabNavigator(
   {
     CHANNELS_STACK: {

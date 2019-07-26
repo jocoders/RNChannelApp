@@ -12,22 +12,22 @@ import {
 
 const styles = StyleSheet.create({
   imageBackgroundStyle: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     borderRadius: 5,
-    overflow: 'hidden'
+    height: '100%',
+    justifyContent: 'flex-end',
+    overflow: 'hidden',
+    width: '100%'
   },
   headerStyle: {
+    color: 'white',
     fontSize: 15,
-    fontWeight: 'bold',
-    color: 'white'
+    fontWeight: 'bold'
   },
   listItem: {
     height: 100,
-    width: 140,
-    margin: 8
+    margin: 8,
+    width: 140
   }
 })
 

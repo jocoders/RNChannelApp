@@ -1,4 +1,4 @@
-export const data = [
+export const channelData = [
   {
     header: 'ART',
     image: require('./img/atharva-tulsi-473834-unsplash-min.jpg')

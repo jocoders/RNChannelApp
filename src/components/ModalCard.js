@@ -19,94 +19,125 @@ import { BLUE } from '../constants'
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 260,
-    alignSelf: 'center'
-  },
-  imageContainer: {
-    height: 140,
-    width: 260,
-    marginTop: 20,
     alignSelf: 'center',
-    borderRadius: 10,
-    borderColor: BLUE,
-    borderWidth: 1,
-    //backgroundColor: '#8E8E93',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: 260
   },
   iconContainer: {
-    height: 20,
-    width: 20,
-    marginLeft: 5,
-    alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: BLUE,
     borderRadius: 10,
-    backgroundColor: BLUE
+    height: 20,
+    justifyContent: 'center',
+    marginLeft: 5,
+    width: 20
+  },
+  imageContainer: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderColor: BLUE,
+    borderRadius: 10,
+    borderWidth: 1,
+    height: 140,
+    justifyContent: 'center',
+    marginTop: 20,
+    width: 260
   },
   noticeStyle: {
-    width: 260,
     alignSelf: 'center',
+    fontSize: 12,
+    fontWeight: 'bold',
     marginTop: 20,
-    fontWeight: 'bold'
+    width: 260
   },
   textInput: {
-    fontSize: 20,
+    fontSize: 15,
     marginLeft: 5,
     padding: 5,
     width: 210
   },
   titleContainer: {
-    width: 260,
-    borderWidth: 1,
+    alignSelf: 'center',
     borderRadius: 10,
+    borderWidth: 1,
     borderColor: BLUE,
     flexDirection: 'row',
     marginTop: 5,
-    alignSelf: 'center'
+    width: 260
   }
 })
 const ModalCard = props => {
   const { buttonContainer, imageContainer, iconContainer, noticeStyle, textInput, titleContainer } = styles
   const {
     buttonAddPushed,
+    descriptionNotice,
+    descriptionPlaceholder,
+    descriptionValue,
     header,
     onChange,
+    onChangeDescription,
     image,
+    imageTopicStyle,
     chooseImage,
     create,
     hideModal,
-    noticeText,
+    titleNotice,
+    titlePlaceholder,
     titleValue,
     visible
   } = props
+  let description
+  if (descriptionPlaceholder) {
+    description = (
+      <View>
+        <Text style={noticeStyle}>{descriptionNotice}</Text>
+        <View style={titleContainer}>
+          <View style={iconContainer}>
+            <Ionicons name="ios-add" color="#ffffff" size={20} />
+          </View>
+          <TextInput
+            autoCapitalize="words"
+            multiline={true}
+            onChangeText={onChangeDescription}
+            placeholder={descriptionPlaceholder}
+            style={textInput}
+            textAlignVertical={true}
+            value={descriptionValue}
+          />
+        </View>
+      </View>
+    )
+  }
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
       <Modal
         animationType="slide"
-        transparent={false}
-        visible={visible}
         onRequestClose={() => {
           Alert.alert('Modal has been closed')
         }}
+        transparent={false}
+        visible={visible}
       >
         <ModalHeader header={header} onLeftIconPress={hideModal} onRightIconPress={create} />
         <ScrollView>
-          <View style={imageContainer}>
+          <View style={[imageContainer, imageTopicStyle]}>
             <TouchableOpacity onPress={chooseImage}>
               <Ionicons name="ios-add" color={BLUE} size={60} style={{ display: buttonAddPushed ? 'none' : 'flex' }} />
             </TouchableOpacity>
             <Image
               source={{ uri: image }}
-              style={{
-                display: buttonAddPushed ? 'flex' : 'none',
-                width: 260,
-                height: 140,
-                borderRadius: 10
-              }}
+              style={[
+                {
+                  borderRadius: 10,
+                  display: buttonAddPushed ? 'flex' : 'none',
+                  height: 140,
+                  width: 260
+                },
+                imageTopicStyle
+              ]}
             />
           </View>
-          <Text style={noticeStyle}>{noticeText}</Text>
+          <Text style={noticeStyle}>{titleNotice}</Text>
           <View style={titleContainer}>
             <View style={iconContainer}>
               <Ionicons name="ios-add" color="#ffffff" size={20} />
@@ -115,12 +146,13 @@ const ModalCard = props => {
               autoCapitalize="words"
               multiline={true}
               onChangeText={onChange}
-              placeholder="Channel title..."
+              placeholder={titlePlaceholder}
               style={textInput}
               textAlignVertical={true}
               value={titleValue}
             />
           </View>
+          {description}
           <TouchableOpacity style={buttonContainer}>
             <ButtonWithBackground buttonColor={BLUE} onPress={create} text="Create" />
           </TouchableOpacity>

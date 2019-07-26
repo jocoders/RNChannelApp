@@ -4,18 +4,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const styles = StyleSheet.create({
   channelImageStyle: {
-    height: 30,
-    width: 30,
     borderRadius: 15,
-    marginRight: 8
+    height: 30,
+    marginRight: 8,
+    width: 30
   },
   container: {
-    width: '100%',
-    marginTop: 30,
-    marginBottom: 5,
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    marginTop: 30,
+    marginBottom: 5,
+    width: '100%'
   },
   textStyle: {
     alignSelf: 'center',
